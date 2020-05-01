@@ -1,0 +1,28 @@
+h1 {
+    color : lightslategrey;
+}
+
+table {
+    text-align: center;
+}
+
+table, th, td {
+    border: 0.1px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+}
+
+
+div.ab{
+    background-color: azure;
+    max-width: 500px;
+}
+
+
+body{
+    background-color: wheat;
+}
