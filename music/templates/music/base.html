@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" >
+        <title>Music</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+        {% comment %} {% if user.is_authenticated %}
+    <div class="ab"><h1> MyBlog </h1><span style="float:right"><button value="Add new Blog"><a href="{% url 'add' %}" >Add new Blog</a></button> </span>
+    <span style="float:right"><button value="My Profile"><a href="{% url 'private'%}" >My Profile</a></button> </span>
+    {% else %}
+    <span style="float:right"><button value="Sign In"><a href="#" >Sign In</a></button> </span>
+    <span style="float:right"><button value="Sign Up"><a href="#" >Sign Up</a></button> </span>
+    {% endif %}
+    </div>
+
+    <br>
+    <br>
+    </head> {% endcomment %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Mihir's Blog</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{% url 'index' %}">Home</a></li>
+      {% if user.is_authenticated %}<li><a href="{% url 'profile' %}">My Blogs</a></li>
+      <li><a href="{% url 'add' %}">Add</a></li>
+      {% else %}
+      <li><a href="{% url 'login' %}">My Blogs</a></li>
+      <li><a href="{% url 'login' %}">Add</a></li>
+      {% endif %}
+    </ul>
+    <form class="navbar-form navbar-left" method="GET" action="{% url 'search' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <input type="search" class="form-control" placeholder="Search" name="search">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+      <div class="navbar-header">
+      
+    </div>
+    </form>
+    <div style="display:inline-block;float:right;">
+    <button><h2><span style="float:right">{{ user }}</span></h2></button>
+    <button><h2><span style="float:right;"><a href="{% url 'logout' %}">Log Out</a></span></h2></button>
+    <button><h2><span style="float:right"><a href="{% url 'login' %}">Log In</a></span></h2></button>
+    </div>
+  </div>
+</nav>
+    {% block content %}
+    {% endblock %}
+</html>

@@ -1,0 +1,14 @@
+{% extends 'music/base.html' %}
+{% block content %}
+<body style="text-align: center;">
+<h1> You Can Login Here </h1>
+<br>
+<hr>
+<form method="POST" class=".form-inline	">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" value="Submit" name="submit" >Submit</button>
+</form>
+</body>
+{% endblock %}

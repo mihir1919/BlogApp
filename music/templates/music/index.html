@@ -1,0 +1,27 @@
+{% extends 'music/base.html' %}
+{% block content %}
+<style>
+pre{
+    width: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+</style>
+    <body style="text-align:center;background-color: whitesmoke;">
+   
+<div style="display: inline-block;background-color: white;">
+    {% for i in t %}
+    <div style="display: inline-block;text-align: center;width: 500px;border: gray solid 0px;">
+        <h2> {{ forloop.counter }} </h2>
+       <h2> <a href="{% url 'details' pk=i.pk %}">{{ i.name }}</a> </h2>
+       <h2> {{ i.author }} </h2>
+        <h3> {{ i.added.date }} </h3>
+        <h3> {{ i.added.time }} </h3>
+        <pre>{{ i.desc }} </pre>
+    <div>
+    <hr>
+    {% endfor %}
+</div>
+    </body>
+{% endblock %}

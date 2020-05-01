@@ -1,0 +1,38 @@
+{% extends 'music/base.html' %}
+{% block content %}
+
+    <body style="text-align:center">
+
+<div style="display:inline-block;text-align:center;">
+<table>
+  <tr>
+    <th><h2>Sno.</h2></th> 
+    <th><h2>Title</h2></th>
+    <th><h2>Author</h2></th>
+    <th><h2>Date</h2></th> 
+    <th><h2>time</h2></th> 
+    <th>Edit</th>
+    <th>Delete</th>
+    
+  </tr>
+    {% for i in t %}
+       <tr style="text-align:center"> 
+       <td> {{ forloop.counter }} </td>
+       <td> <a href="{% url 'details' pk=i.pk %}">{{ i.name }}</a> </td>
+       <td> {{ i.author }} </td>
+        <td> {{ i.added.date }} </td>
+        <td> {{ i.added.time }} </td>
+        {% if user.is_authenticated %}
+        <td> <span><button><a href="{% url 'edit' pk=i.pk %}">Edit</a><span> </td>
+        <td> <span><button><a href="{% url 'delete' pk=i.pk %}">Delete</a><span> </td>
+        {% else %}
+        <td> <span>-<span> </td>
+        <td> <span>-<span> </td>
+        {% endif %}
+        </tr>
+    {% endfor %}
+   
+</table>
+</div>
+    </body>
+{% endblock %}
