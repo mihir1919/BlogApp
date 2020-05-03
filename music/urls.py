@@ -15,4 +15,5 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name="music/login.html"), name="login"),
     path('index/', LogoutView.as_view(template_name="music/index.html"),name="logout"),
     path('search/', views.search, name="search"),
+    path('weather/',views.weather,name="weather"),
 ]

@@ -2,60 +2,76 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="{% static 'css/styles.css' %}" >
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <title>Music</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
-        {% comment %} {% if user.is_authenticated %}
-    <div class="ab"><h1> MyBlog </h1><span style="float:right"><button value="Add new Blog"><a href="{% url 'add' %}" >Add new Blog</a></button> </span>
-    <span style="float:right"><button value="My Profile"><a href="{% url 'private'%}" >My Profile</a></button> </span>
-    {% else %}
-    <span style="float:right"><button value="Sign In"><a href="#" >Sign In</a></button> </span>
-    <span style="float:right"><button value="Sign Up"><a href="#" >Sign Up</a></button> </span>
-    {% endif %}
-    </div>
-
-    <br>
-    <br>
-    </head> {% endcomment %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Mihir's Blog</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="{% url 'index' %}">Home</a></li>
-      {% if user.is_authenticated %}<li><a href="{% url 'profile' %}">My Blogs</a></li>
-      <li><a href="{% url 'add' %}">Add</a></li>
-      {% else %}
-      <li><a href="{% url 'login' %}">My Blogs</a></li>
-      <li><a href="{% url 'login' %}">Add</a></li>
-      {% endif %}
-    </ul>
-    <form class="navbar-form navbar-left" method="GET" action="{% url 'search' %}">
-      {% csrf_token %}
-      <div class="form-group">
-        <input type="search" class="form-control" placeholder="Search" name="search">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <a class="navbar-brand" href="{% url 'index' %}">MyBlog</a>
+    <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation"></button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'index' %}">Home🏠 <span class="sr-only">(current)</span></a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'profile' %}">My Blogs👱🏻‍♂️</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'add' %}">Add Blog➕</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'weather' %}">💦⛅️Weather🤷‍♂️</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownId">
+            <a class="dropdown-item" href="#">About us</a>
+            <a class="dropdown-item" href="#">YoYo</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0" style="margin-right: 30px;" method="GET" action="{% url 'search' %}">
+        {% csrf_token %}
+        <div class="form-group" >
+          <input type="search" style="margin-right: 10px;" class="form-control" placeholder="Search" name="search">
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+        <div class="navbar-header">
+        
       </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-      <div class="navbar-header">
-      
+      </form>
+      {% if user.is_authenticated %}
+      <button type="button" name="" id="" class="btn btn-primary" btn-lg btn-block style="margin-right:10px;"><a style="color: whitesmoke;" href="{% url 'logout' %}">Logout</a></button>
+      <button type="button" name="" id=""  class="btn btn-primary"btn-lg btn-block><a style="color: whitesmoke;" href="{% url 'profile' %}">{{user}}</a></button>
+      {% else %}
+        <button type="button" name="" id=""  class="btn btn-primary"btn-lg btn-block style="margin-right:10px;"><a style="color: whitesmoke;" href="{% url 'login' %}">Login</a></button>
+        {% endif %}
     </div>
-    </form>
-    <div style="display:inline-block;float:right;">
-    <button><h2><span style="float:right">{{ user }}</span></h2></button>
-    <button><h2><span style="float:right;"><a href="{% url 'logout' %}">Log Out</a></span></h2></button>
-    <button><h2><span style="float:right"><a href="{% url 'login' %}">Log In</a></span></h2></button>
-    </div>
-  </div>
-</nav>
+  </nav>
     {% block content %}
     {% endblock %}
+  <div class="jumbotron jumbotron-fluid" style="background-color: whitesmoke;">
+    <div class="container">
+      <div class="d-inline-flex p-3 text-grey" style="margin:10px;">
+        <div class="p-2"><img src="https://pngimg.com/uploads/facebook_logos/facebook_logos_PNG19748.png" width="55px"></div>
+        <div class="p-2"><img src="https://image.flaticon.com/icons/svg/25/25231.svg" width="55px"></div>
+        <div class="p-2"><img src="https://www.freepnglogos.com/uploads/instagram-logos-png-images-free-download-2.png" width="55px"></div>
+      </div>
+      <hr class="my-2">
+      <p class="lead">
+      <br>
+        <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">About us</a>
+      </p>
+    </div>
+  </div>
+  <h5 style="font-family: 'Courier New', Courier, monospace;">Created By Mihir Srivastava</h5>
 </html>
+

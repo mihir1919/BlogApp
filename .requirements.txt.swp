@@ -1,0 +1,11 @@
+whitenoise==3.2
+psycopg2==2.6.1
+bleach==1.4.3
+Markdown==2.6.6
+Pillow==3.3.0
+python-decouple==3
+Unipath==1.0
+gunicorn==19.6.0
+dj-static==0.0.6
+dj-database-url==0.3.0
+Django==1.9.8

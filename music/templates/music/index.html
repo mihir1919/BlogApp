@@ -1,27 +1,38 @@
 {% extends 'music/base.html' %}
 {% block content %}
+<br>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3">Timeline</h1>
+        <p class="lead">Add Blogs</p>
+        <hr class="my-2">
+        <p> ⬇️ </p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href=" {% url 'add' %} " role="button">Add Blogs</a>
+        </p>
+    </div>
+</div>
+<br>
 <style>
 pre{
-    width: 500px;
+    width: 550px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 </style>
     <body style="text-align:center;background-color: whitesmoke;">
-   
-<div style="display: inline-block;background-color: white;">
+
     {% for i in t %}
-    <div style="display: inline-block;text-align: center;width: 500px;border: gray solid 0px;">
-        <h2> {{ forloop.counter }} </h2>
+    <span class="container" style="display: inline-block;text-align: center;width: 600px;border: gray solid 0px;padding:30px;background-color:white;margin:10px;">
        <h2> <a href="{% url 'details' pk=i.pk %}">{{ i.name }}</a> </h2>
-       <h2> {{ i.author }} </h2>
-        <h3> {{ i.added.date }} </h3>
-        <h3> {{ i.added.time }} </h3>
+       <span>{{ i.author }} 
+        {{ i.added.date }}
+        <img src="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+        {{ i.added.time }}</span>
+        <hr>
         <pre>{{ i.desc }} </pre>
-    <div>
-    <hr>
+    </span>
     {% endfor %}
-</div>
     </body>
 {% endblock %}

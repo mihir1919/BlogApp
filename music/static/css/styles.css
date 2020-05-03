@@ -22,7 +22,16 @@ div.ab{
     max-width: 500px;
 }
 
+div.ao{
+    background-color: whitesmoke;
+    max-width: 500px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: gray;
+}
+
 
 body{
-    background-color: wheat;
+    text-align:center;
+    background-color: whitesmoke;
 }
